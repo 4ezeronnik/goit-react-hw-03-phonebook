@@ -10,14 +10,13 @@ class App extends Component  {
   
   addContact = text => {
     const contact = {
+      name: text,
       id: nanoid(),
-      text,
     };
     this.setState(({ contacts }) => ({
       contacts: [contact, ...contacts]
     }));
   };
-
 
   handleChange = e => {
     this.setState({ name: e.currentTarget.value });
@@ -26,14 +25,18 @@ class App extends Component  {
   handleSubmit = e => {
     e.preventDefault();
 
- 
+    this.addContact(this.state.name)
 
-    this.setState({ name: '' });
+    this.setState({ name: '' })
   }
 
   render() {
+    const { contacts, name } = this.state;
+    
     return (
-      <form>
+      <>
+      <h1>Phonebook</h1>
+      <form onSubmit={this.handleSubmit}>
       <label>
         Name
     <input
@@ -41,12 +44,21 @@ class App extends Component  {
   name="name"
   pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
   title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
+              required
+              
             onChange={this.handleChange}
         />
       </label>
-        <button type="submit">Add contact</button>
+          <button type="submit"
+          >Add contact</button>
         </form>
+        <h1>Contacts</h1>
+        <ul>
+          {contacts.map(({ name, id }) => (
+            <li key={id}>{name}</li>
+))}
+      </ul>
+        </>
   );
 }
 };
