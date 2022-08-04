@@ -53,12 +53,13 @@ class App extends Component  {
     const normalizedFilter = filter.toLowerCase();
 
     return contacts.filter(contact =>
-      contact.text.toLowerCase().includes(normalizedFilter),
+      contact.name.toLowerCase().includes(normalizedFilter),
     );
   };
 
   render() {
-    const { contacts, name, number, filter } = this.state;
+    const { name, number, filter } = this.state;
+    const visibleTodos = this.getVisibleTodos();
     
     
     return (
@@ -98,10 +99,11 @@ class App extends Component  {
          <label>
          Find contacts by name
           <input type="text" value={filter} onChange={this.changeFilter} />
+        
         </label>
         
         <ul>
-          {contacts.map(({ name, id, number }) => (
+          {visibleTodos.map(({ name, id, number }) => (
             <li key={id}>{name}: {number}</li>
 ))}
       </ul>
