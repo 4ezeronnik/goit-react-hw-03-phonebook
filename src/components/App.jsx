@@ -65,13 +65,13 @@ class App extends Component  {
       <div>
 
         <h1>Phonebook</h1>
-        <ContactForm onSubmit={this.addContact}/>
+        <ContactForm onSubmit={this.addContact} />
       
         <h2>Contacts</h2>
         <Filter value={filter} onChange={this.changeFilter} />
         <ContactList
           contacts={visibleContacts}
-        onDeleteContact={this.deleteContact}/>
+        onDeleteContact={this.deleteContac}/>
         
         </div>
   );
