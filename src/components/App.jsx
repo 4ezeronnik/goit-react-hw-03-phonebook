@@ -17,17 +17,27 @@ class App extends Component  {
     filter: '',
   };
   
-  addContact = (name, number)=> {
+  addContact = (text, number) => {
+    
+
     const contact = {
-      name,
+      name: text,
       id: nanoid(),
       number,
     };
-    this.setState(({ contacts }) => ({
-      contacts: [contact, ...contacts]
-    }));
-  };
 
+    const { contacts } = this.state;
+    if (contacts.find(contact => contact.name === text)) {
+      alert(`${contact.name} is already in contacts.`)
+      
+      return
+    }
+    
+    this.setState(({ contacts }) => ({
+      contacts: [contact, ...contacts],
+    }));
+    
+  };
 
    changeFilter = e => {
     this.setState({ filter: e.currentTarget.value });
@@ -46,7 +56,6 @@ class App extends Component  {
     const { filter } = this.state;
     const visibleContacts = this.getVisibleContacts();
     
-    
     return (
       <div>
 
@@ -55,8 +64,7 @@ class App extends Component  {
       
         <h2>Contacts</h2>
         <Filter value={filter} onChange={this.changeFilter} />
-        <ContactList
-          contacts={visibleContacts} />
+        <ContactList contacts={visibleContacts} />
         
         </div>
   );
