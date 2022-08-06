@@ -71,7 +71,7 @@ class App extends Component  {
         <Filter value={filter} onChange={this.changeFilter} />
         <ContactList
           contacts={visibleContacts}
-        onDeleteContact={this.deleteContac}/>
+        onDeleteContact={this.deleteContact}/>
         
         </div>
   );
