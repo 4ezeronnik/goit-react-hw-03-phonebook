@@ -1,6 +1,9 @@
 import { nanoid } from 'nanoid';
 import React, { Component } from 'react';
+
 import ContactForm from './ContactForm/ContactForm';
+import Filter from './Filter/Filter';
+import ContactList from './ContactList/ContactList';
 
 class App extends Component  {
 
@@ -14,7 +17,7 @@ class App extends Component  {
     filter: '',
   };
   
-  addContact = (name, number )=> {
+  addContact = (name, number)=> {
     const contact = {
       name,
       id: nanoid(),
@@ -30,7 +33,7 @@ class App extends Component  {
     this.setState({ filter: e.currentTarget.value });
    };
   
-    getVisibleTodos = () => {
+    getVisibleContacts = () => {
     const { filter, contacts} = this.state;
     const normalizedFilter = filter.toLowerCase();
 
@@ -41,26 +44,20 @@ class App extends Component  {
 
   render() {
     const { filter } = this.state;
-    const visibleTodos = this.getVisibleTodos();
+    const visibleContacts = this.getVisibleContacts();
     
     
     return (
       <div>
+
         <h1>Phonebook</h1>
-        <ContactForm onSubmit={this.addTodo}/>
+        <ContactForm onSubmit={this.addContact}/>
       
-        <h1>Contacts</h1>
-         <label>
-         Find contacts by name
-          <input type="text" value={filter} onChange={this.changeFilter} />
+        <h2>Contacts</h2>
+        <Filter value={filter} onChange={this.changeFilter} />
+        <ContactList
+          contacts={visibleContacts} />
         
-        </label>
-        
-        <ul>
-          {visibleTodos.map(({ name, id, number }) => (
-            <li key={id}>{name}: {number}</li>
-))}
-      </ul>
         </div>
   );
 }
