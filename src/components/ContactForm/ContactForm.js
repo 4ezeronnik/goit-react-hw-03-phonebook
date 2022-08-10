@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import styles from './ContactForm.module.css'
 
 class ContactForm extends Component {
-  static defaultProps = {
-    onSubmit: this.addContact
-  }
-
     state = {
        name: '',
        number: ''

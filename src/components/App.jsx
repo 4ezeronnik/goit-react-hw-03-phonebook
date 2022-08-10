@@ -5,6 +5,7 @@ import ContactForm from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
 
+
 class App extends Component  {
 
   state = {
@@ -71,7 +72,7 @@ class App extends Component  {
         <Filter value={filter} onChange={this.changeFilter} />
         <ContactList
           contacts={visibleContacts}
-        onDeleteContact={this.deleteContact}/>
+          onDeleteContact={this.deleteContact} />
         
         </div>
   );
