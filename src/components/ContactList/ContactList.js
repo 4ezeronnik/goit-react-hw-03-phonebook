@@ -1,15 +1,14 @@
 import PropTypes from 'prop-types';
 import Contact from 'components/Contact/Contact';
 
-
-const ContactList = ({ onDeleteContact, contacts }) => (
-      <ul>
-            <Contact
-                  contacts={contacts}
-                  onDeleteContact={onDeleteContact}/>
-            
+const ContactList = ({ onDeleteContact, contacts }) => {
+      return (<ul>
+            {contacts.map(({ name, id, number }) => (
+                  <Contact key={id} name={name} number={number} onDeleteContact={onDeleteContact} id={id}/>))}
       </ul>
-);
+
+      );
+}
 
 ContactList.propTypes = {
       contacts: PropTypes.arrayOf(

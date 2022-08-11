@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
 
 import styles from './Contact.module.css'
-const Contact = ({ contacts, onDeleteContact }) => (
+const Contact = ({ id, name, number, onDeleteContact }) => (
      
-    contacts.map(({ name, id, number }) => (
-        <li key={id}>{name}: {number}
+        <li>{name}: {number}
                  <button
                               type="button"
                               onClick={() => onDeleteContact(id)}
@@ -13,19 +12,14 @@ const Contact = ({ contacts, onDeleteContact }) => (
                         </button>
         </li>
     
-    )));
+    );
 
-    Contact.propTypes = {
-      contacts: PropTypes.arrayOf(
-            PropTypes.shape(
-                  {
-                        name: PropTypes.string.isRequired,
-                        id: PropTypes.string.isRequired,
-                        number: PropTypes.string.isRequired,
-                  }
-            )
-      ).isRequired,
-      onDeleteContact: PropTypes.func.isRequired
+Contact.propTypes = {
+      
+      name: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+      onDeleteContact: PropTypes.func.isRequired,
 };
 
 export default Contact;
